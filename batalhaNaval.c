@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+#define lines 10
+#define columns 10
+
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
@@ -7,7 +10,7 @@
 int main() {
     // Nível Novato - Posicionamento dos Navios
     char letter[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-    int board[10][10] = {
+    /* int board[10][10] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -17,33 +20,38 @@ int main() {
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0}
-    };
-    
+    }; */
+    int board[lines][columns];
+    int soma = 0;
+
     for(int k = 0; k < 10; k++) {
         printf("  ");
         printf("%c", letter[k]);
         // printf(" ");
     }
-    for(int i = 0; i < 10; i++) {
-        printf("\n");
-        printf("%d ", i + 1);
+    printf("\n");
+  
+        for (int i = 0; i < lines; i++) {
+        for(int j = 0; j < columns; j++) {
+            board[i][j] = 0;
+            if(
+            (i == 2 && (j >= 3 && j <= 5)) || 
+            (i >= 4 && i <= 6 && (j == 4)) || 
+            (i >= 5 && i <= 7) && (i == j))
+            {
+                board[i][j] = 3;
 
-        for(int j = 1; j <= 10; j++) {
-            printf("%d ", board[i][j]);
-        
-                while ((i == 2 && (j >= 3 && j <= 5)) || (i >= 4 && i <= 6 && (j == 4)))
-                {
-                    printf(" %d ", board[i][j] = 3);
-                    j++;
-                }
-                
+            }
             
-            printf(" ");
-            
+            printf("  ");
+            printf("%d", board[i][j]);
+
+
         }
+
+        printf("\n");
         
-         
-    }
+    }     
     printf("\n");
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
