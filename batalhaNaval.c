@@ -2,57 +2,70 @@
 
 #define lines 10
 #define columns 10
+#define lGeo 5
+#define cGeo 5
 
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
-int main() {
+int main()
+{
     // Nível Novato - Posicionamento dos Navios
     char letter[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-    /* int board[10][10] = {
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0}
-    }; */
     int board[lines][columns];
     int soma = 0;
+    int cone[lGeo][cGeo], cross[lGeo][cGeo], octahedron[lGeo][cGeo];
 
-    for(int k = 0; k < 10; k++) {
-        printf("  ");
+    for (int k = 0; k < 10; k++)
+    {
+        printf(" ");
         printf("%c", letter[k]);
-        // printf(" ");
     }
     printf("\n");
-  
-        for (int i = 0; i < lines; i++) {
-        for(int j = 0; j < columns; j++) {
+
+    for (int i = 0; i < lines; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
             board[i][j] = 0;
-            if(
-            (i == 2 && (j >= 3 && j <= 5)) || 
-            (i >= 4 && i <= 6 && (j == 4)) || 
-            (i >= 5 && i <= 7) && (i == j) ||
-            (i >= 7 && i <= 9) && (j == (9 - i))) 
+            if (
+                (i == 2 && (j >= 3 && j <= 5)) ||
+                (i >= 4 && i <= 6 && (j == 4)) ||
+                (i >= 5 && i <= 7) && (i == j) ||
+                (i >= 7 && i <= 9) && (j == (9 - i)))
             {
                 board[i][j] = 3;
-
             }
-            
-            printf("  ");
+            // Habilidade do CONE
+            if (
+                (i >= 0 && i <= 2 && j == 4) ||
+                (i == 1 && j >= 3 && j <= 5) ||
+                (i == 2 && j >= 2 && j <= 6))
+            {
+                board[i][j] = 1;
+            }
+            // Habilidade do OCTAEDRO
+            if (
+                (i >= 0 && i <= 2 && j == 8) ||
+                (i == 1 && j >= 7 && j <= 9))
+            {
+                board[i][j] = 2;
+            }
+            // Habilidade da Cruz
+            if (
+                (i >= 6 && i <= 9 && j == 2) ||
+                (i == 7 && j >= 0 && j <= 4))
+            {
+                board[i][j] = 7;
+            }
+
+            printf(" ");
             printf("%d", board[i][j]);
-
-
         }
 
         printf("\n");
-        
-    }     
+    }
     printf("\n");
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
@@ -72,7 +85,7 @@ int main() {
     // 0 0 1 0 0
     // 0 1 1 1 0
     // 1 1 1 1 1
-    
+
     // Exemplo para habilidade em octaedro:
     // 0 0 1 0 0
     // 0 1 1 1 0
